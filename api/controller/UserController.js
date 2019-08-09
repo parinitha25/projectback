@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 UserData = mongoose.model('UserInfo');
+// const express=require('express');
 var bcrypt = require('bcryptjs');
-var fs = require("fs");
-jwt=require('jsonwebtoken');
-UserAppointment =mongoose.model('appointment');
+// const router=express.Router();
+// var fs = require("fs");
+var jwt=require('jsonwebtoken');
+// UserAppointment =mongoose.model('appointment');
 var isAuth=require('../Midleware/isAuth');
 
 //get all users
@@ -32,9 +34,9 @@ exports.userSignup = function(req, res){
   console.log("hi signup")
   const reg_email=/^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
   const reg_pwd=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-  if(!reg_pwd.test(req.body.Password)){
-    res.send('password is invalid');
-  }
+  // if(!reg_pwd.test(req.body.Password)){
+  //   res.send('password is invalid');
+  // }
 
   if(reg_email.test(req.body.Email)){
     console.log(req.body);
@@ -92,6 +94,54 @@ exports.userSignin = (req,res,next) =>{
   
   });
 }
+// router.route('/signin').post(function(req,res){
+//   console.log('login entered');
+//   try{
+//   User.findOne({Email: req.body.Email},function(err,user){
+  
+//   console.log('enterd findone' + req.body.Email);
+//   if(err)
+//   {
+//   console.log('entered error');
+//   throw err;
+//   }
+//   if(!user)
+//   {
+//   console.log('No a User');
+//   console.log(user);
+  
+//   res.status(400).json({'Login': 'Authentication failed. User not found.'});
+//   }
+//   else if(user)
+//   {
+//   console.log('User');
+//   if(user.Password != req.body.Password)
+//   {
+//   res.status(400).send({'Login': 'Authentication failed. Wrong Password.'});
+//   }
+//   else
+//   {
+//   const payload = {
+//   isAdmin : user.isAdmin
+//   }
+//   var token = jwt.sign(payload,config.secret,{
+//   expiresIn : '6h'
+//   });
+  
+//   res.json({
+//   success: true,
+//   token: token
+//   });
+//   }
+//   }
+  
+//   });
+//   }
+//   catch(er){
+//   console.log(er);
+//   }
+  
+//   });
   exports.getAllSignin = (isAuth,function(req, res) {
     console.log("hello")
      UserData.find({userId:req.decodedToken}, function(err, data) {

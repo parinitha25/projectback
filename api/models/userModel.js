@@ -29,24 +29,4 @@ var UserSchema = new Schema({
 
 module.exports = mongoose.model('UserInfo', UserSchema);
 
-var appointmentSchema=new Schema({
-  name:{
-      type:String,
-      required: 'name required'
-  },
-  email:{
-      type:String,
-      required: 'email required'
-  },
-  date:{
-      type:Date,
-      required: 'date required'
-  },
-  time:{
-      type:String,
-      required: 'time required'
-  }
-
-})
-module.exports = mongoose.model('appointment',appointmentSchema);
 
